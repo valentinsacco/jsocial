@@ -1,13 +1,28 @@
+import { Fragment } from 'react'
+import Head from 'next/head'
 import { SessionProvider } from 'next-auth/react'
+
+import Navbar from 'layout/Navbar'
 
 import '../styles/globals.css'
 
 const App = ({ Component, pageProps: { session, ...pageProps } }) => (
-    <main>
+    <Fragment>
+        <Head>
+            <title>jsocial</title>
+            <meta
+                name="description"
+                content="A social website for javascript developers"
+            />
+            <link rel="icon" href="/favicon.ico" />
+        </Head>
         <SessionProvider session={session}>
-            <Component {...pageProps}/>
+            <Navbar />
+            <main className='mt-20'>
+                <Component {...pageProps} />
+            </main>
         </SessionProvider>
-    </main>
+    </Fragment>
 )
 
 export default App
